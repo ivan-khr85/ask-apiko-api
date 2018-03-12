@@ -66,3 +66,56 @@ __PUT__ `/api/v1/users/my` - **Update** User details
  @params
        email {string}
 ```
+
+
+### Question
+
+ GET `/api/v1/questions/` - List
+
+ ```
+ @header
+      Authorization: Bearer {token}
+ @optionalQueryParameters
+       search {String} - value to search
+       limit {Number} - count of item to send
+       skip {Number} - value to search
+```
+
+ GET `/api/v1/questions/:_id` - get single
+
+ ```
+ @header
+        Authorization: Bearer {token}
+
+ ```
+
+ POST `/api/v1/questions/` - Create
+
+ ```
+ @header
+      Authorization: Bearer {token}
+ @param
+       title (require) - {string}
+       description (require) - {string}
+       tags (require) - [string]
+  ```
+
+ PATCH `/api/v1/questions/:_id` - Update
+
+ ```
+ @header
+        Authorization: Bearer {token}
+ @param
+      title (require) - {string}
+      description (require) - {string}
+      tags (require) - [string]
+ ```
+
+ DELETE ``/api/v1/questions/:_id` - Remove
+
+ ```
+ @header
+        Authorization: Bearer {token}
+ ```
+
+ **/
