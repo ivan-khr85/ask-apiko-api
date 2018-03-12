@@ -7,7 +7,7 @@ Make sure that you have last version of [Node js](https://nodejs.org/en//) and [
 
 > !!! add .env file with `PORT` `MONGODB_URI` and `SECRET_TOKEN` variables for example 
  ```
-MONGODB_URI = mongodb://localhost:27017/spark-horizon-api
+MONGODB_URI = mongodb://localhost:27017/ask-apiko-api
 PORT = 3001
 SECRET_TOKEN = W3 Hav3 th3 kn0w h0w
 
@@ -111,7 +111,7 @@ __PUT__ `/api/v1/users/my` - **Update** User details
       tags (require) - [string]
  ```
 
- DELETE ``/api/v1/questions/:_id` - Remove
+ DELETE `/api/v1/questions/:_id` - Remove
 
  ```
  @header
