@@ -11,8 +11,9 @@ const schema = new Schema({
     type: String,
     required: [true],
   },
-  tags: {
-    type: [String],
+  questionId: {
+    type: ObjectId,
+    ref: 'Question',
   },
   createdAt: {
     type: Date,

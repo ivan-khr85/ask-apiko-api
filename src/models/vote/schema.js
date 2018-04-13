@@ -3,16 +3,13 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 const schema = new Schema({
-  title: {
-    type: String,
+  isPositive: {
+    type: Boolean,
     required: [true],
   },
-  description: {
-    type: String,
-    required: [true],
-  },
-  tags: {
-    type: [String],
+  answerId: {
+    type: ObjectId,
+    ref: 'Answer',
   },
   createdAt: {
     type: Date,
