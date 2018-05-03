@@ -88,6 +88,17 @@ __PUT__ `/api/v1/users/my` - **Update** User details
         Authorization: Bearer {token}
 
  ```
+ 
+  GET `/api/v1/questions/:_id/answers` - List of answers
+ 
+  ```
+  @header
+       Authorization: Bearer {token}
+  @optionalQueryParameters
+        search {String} - value to search
+        limit {Number} - count of item to send
+        skip {Number} - value to search
+ ```
 
  POST `/api/v1/questions/` - Create
 
@@ -117,5 +128,52 @@ __PUT__ `/api/v1/users/my` - **Update** User details
  @header
         Authorization: Bearer {token}
  ```
-
- **/
+ 
+ ### Answer
+ 
+  GET `/api/v1/answers/` - List
+ 
+  ```
+  @header
+       Authorization: Bearer {token}
+  @optionalQueryParameters
+        search {String} - value to search
+        limit {Number} - count of item to send
+        skip {Number} - value to search
+ ```
+ 
+  GET `/api/v1/answers/:_id` - get single
+ 
+  ```
+  @header
+         Authorization: Bearer {token}
+ 
+  ```
+ 
+  POST `/api/v1/answers/` - Create
+ 
+  ```
+  @header
+       Authorization: Bearer {token}
+  @param
+        title (require) - {string}
+        description (require) - {string}
+        questionId - {string}
+   ```
+ 
+  PATCH `/api/v1/answers/:_id` - Update
+ 
+  ```
+  @header
+         Authorization: Bearer {token}
+  @param
+       title (require) - {string}
+       description (require) - {string}
+  ```
+ 
+  DELETE `/api/v1/answers/:_id` - Remove
+ 
+  ```
+  @header
+         Authorization: Bearer {token}
+  ```

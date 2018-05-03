@@ -5,12 +5,12 @@ const create = require('./create');
 const remove = require('./remove');
 const get = require('./get');
 const list = require('./list');
-const answersList = require('./ansers-list');
+
 
 /**
- * Provide Api for Questions
+ * Provide Api for Answer
 
- GET /api/v1/questions/ - List
+ GET /api/v1/answer/ - List
  @header
       Authorization: Bearer {token}
  @optionalQueryParameters
@@ -19,19 +19,11 @@ const answersList = require('./ansers-list');
        skip {Number} - value to search
 
 
- GET /api/v1/questions/:_id - get single
+ GET /api/v1/answer/:_id - get single
  @header
         Authorization: Bearer {token}
 
- GET /api/v1/questions/answers - List of answers
- @header
-        Authorization: Bearer {token}
- @optionalQueryParameters
-       search {String} - value to search
-       limit {Number} - count of item to send
-       skip {Number} - value to search
-
- POST /api/v1/questions/ - Create
+ POST /api/v1/answer/ - Create
  @header
       Authorization: Bearer {token}
  @param
@@ -39,7 +31,7 @@ const answersList = require('./ansers-list');
        description (require) - {string}
        tags (require) - [string]
 
- PATCH /api/v1/questions/:_id - Update
+ PATCH /api/v1/answer/:_id - Update
  @header
         Authorization: Bearer {token}
  @param
@@ -47,7 +39,7 @@ const answersList = require('./ansers-list');
       description (require) - {string}
       tags (require) - [string]
 
- DELETE /api/v1/questions/:_id - Remove
+ DELETE /api/v1/answer/:_id - Remove
  @header
         Authorization: Bearer {token}
 
@@ -58,7 +50,6 @@ module.exports = (models) => {
 
   api.get('/', list(models));
   api.get('/:_id', get(models));
-  api.get('/:_id/answers', answersList(models));
   api.post('/', authenticate, create(models));
   api.patch('/:_id', authenticate, update(models));
   api.delete('/:_id', authenticate, remove(models));
