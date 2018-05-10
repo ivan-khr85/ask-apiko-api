@@ -31,7 +31,6 @@ app.use(bodyParser.json({
 app.use(passport.initialize());
 
 
-
 // api routes v1
 app.use('/api/v1', api(config));
 
