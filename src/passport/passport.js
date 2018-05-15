@@ -4,7 +4,7 @@ const { User } = require('../models/user');
 const { localAuth } = require('./local');
 
 passport.use(new LocalStrategy({
-  usernameField: 'email',
+  usernameField: 'username',
   passwordField: 'password',
 }, localAuth(User)));
 

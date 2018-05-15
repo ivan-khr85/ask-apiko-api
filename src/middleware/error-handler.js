@@ -1,3 +1,4 @@
+const _ = require('lodash')
 const { APIError, InternalServerError } = require('rest-api-errors');
 const { STATUS_CODES } = require('http');
 const logger = require('../../logger');
@@ -15,8 +16,7 @@ const errorHandler = (err, req, res, next) => {
     console.log(err);
   }
 
-
-  if (err.name === 'ValidationError') {
+  if (['ValidationError', 'UserExistsError'].includes(err.name)) {
     return res.status(405).json(err);
   }
 

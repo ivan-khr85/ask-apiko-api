@@ -32,15 +32,18 @@ npm run lint
 __POST__ `/api/v1/auth/sign-in` - **Sign In**
 ```
 @params
-       email {string}
+       username {string}
        password {string}
  ```
 
  __POST__ `/api/v1/auth/sign-up` - **Sign Un**
 ```
  @params
+       username
        email {string}
        password {string}
+       profile. 
+               fullname  {string}
 ```
  __POST__ /api/v1/auth/sign-out - **Sign Out**
 ```
@@ -81,6 +84,8 @@ __PUT__ `/api/v1/users/my` - **Update** User details
        search {String} - value to search
        limit {Number} - count of item to send
        skip {Number} - value to search
+       sort. 
+            [fieldName] {Number} 1 || -1
 ```
 
  GET `/api/v1/questions/:_id` - get single

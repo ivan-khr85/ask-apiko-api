@@ -3,10 +3,13 @@ const { EMAIL } = require('../../utils/regexes');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
+  username: {
+    type: String,
+    required: [true],
+  },
   email: {
     type: String,
     required: [true],
-    unique: true,
     validate: {
       validator: email => EMAIL.test(email),
       message: 'Field [email] wrong format.',
@@ -15,11 +18,7 @@ const schema = new Schema({
   profile: {
     fullName: {
       type: String,
-      required: [true],
     },
-    avatar: {
-      type: String,
-    }
   },
 });
 
