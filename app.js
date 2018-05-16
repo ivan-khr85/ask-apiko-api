@@ -21,9 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public/build')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, './public/build/', 'index.html'));
-});
+
 
 // middleware
 app.use(bodyParser.json({
@@ -36,7 +34,9 @@ app.use(passport.initialize());
 
 // api routes v1
 app.use('/api/v1', api(config));
-
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './public/build/', 'index.html'));
+});
 
 // on App start
 onAppStart();
