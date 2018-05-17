@@ -56,9 +56,9 @@ const answersList = require('./ansers-list');
 module.exports = (models) => {
   const api = router();
 
-  api.get('/', authenticate, list(models));
-  api.get('/:_id', authenticate, get(models));
-  api.get('/:_id/answers', authenticate, answersList(models));
+  api.get('/', list(models));
+  api.get('/:_id', get(models));
+  api.get('/:_id/answers', answersList(models));
   api.post('/', authenticate, create(models));
   api.patch('/:_id', authenticate, update(models));
   api.delete('/:_id', authenticate, remove(models));
