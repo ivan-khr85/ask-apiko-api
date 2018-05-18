@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const { sendList } = require('../../middleware/index');
 
-const getListOfAnsers = ({ Answer }) => async (req, res, next) => {
+const getListOfAnswers = ({ Answer }) => async (req, res, next) => {
   try {
     let { _id } = req.params;
     let { limit, skip, search } = req.query;
@@ -14,7 +14,7 @@ const getListOfAnsers = ({ Answer }) => async (req, res, next) => {
       _.extend(query, { title: new RegExp(`${search}`, 'i') });
     }
     const count = await Answer.find(query).count();
-    const questions = await Answer.find(query)
+    const questions = await Answer.find(query, req.filter)
       .skip(skip)
       .limit(limit);
 
@@ -24,4 +24,4 @@ const getListOfAnsers = ({ Answer }) => async (req, res, next) => {
   }
 };
 
-module.exports = getListOfAnsers;
+module.exports = getListOfAnswers;

@@ -18,8 +18,9 @@ const schema = new Schema({
     type: Date,
     required: [true],
   },
-  createdBy: {
+  createdById: {
     type: ObjectId,
+    ref: 'User'
   }
 });
 

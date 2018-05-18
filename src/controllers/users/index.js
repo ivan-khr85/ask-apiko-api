@@ -1,5 +1,5 @@
 const { Router: router } = require('express');
-const { authenticate } = require('../../middleware');
+const { authenticate, withQuery, withFilter } = require('../../middleware');
 const update = require('./update');
 const { getMy } = require('./my');
 
@@ -17,7 +17,7 @@ const { getMy } = require('./my');
 
 module.exports = (models) => {
   const api = router();
-  api.get('/my', authenticate, getMy(models));
+  api.get('/my', authenticate, withQuery, withFilter, getMy(models));
   api.put('/my', authenticate, update(models));
 
   return api;

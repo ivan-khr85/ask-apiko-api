@@ -9,6 +9,10 @@ const {
   sendAccepted,
   withoutErrors,
 } = require('./requests-helpers');
+const {
+  withQuery,
+  withFilter,
+} = require('./parsers');
 
 module.exports = {
   sendOne,
@@ -21,4 +25,6 @@ module.exports = {
   generateAccessToken,
   withoutErrors,
   errorHandler,
+  withQuery,
+  withFilter,
 };
