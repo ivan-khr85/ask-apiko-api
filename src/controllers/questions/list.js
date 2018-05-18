@@ -2,7 +2,7 @@ const _ = require('lodash');
 const { sendList } = require('../../middleware/index');
 const { queryToObject } = require('../../utils/requests');
 
-const getList = ({ Question }) => async (req, res, next) => {
+const getList = ({ Question, User }) => async (req, res, next) => {
   try {
     let { limit, skip, search, sort } = req.query;
 
@@ -14,11 +14,10 @@ const getList = ({ Question }) => async (req, res, next) => {
     if (search) {
       _.extend(query, { title: new RegExp(`${search}`, 'i') });
     }
-    console.log(_.keys(req.filter).join(' '))
     const count = await Question.find(query).count();
-    const questions = await Question.find(query, req.filter)
+    const questions = await Question.find(query, req.fields)
       .populate({
-        path: 'createdById', select: _.keys(req.filter).join(' '),
+        path: 'createdById', select: req.getFieldsForModel(req.fields, User),
       })
       .skip(skip)
       .limit(limit)

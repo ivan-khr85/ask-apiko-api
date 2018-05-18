@@ -14,20 +14,27 @@ const queryToObject = query => {
   return obj;
 };
 
+const getFieldsForModel = (fieldsFilter, Model) => {
+  const modelKeys = _.keys(Model.schema.paths);
+  const fieldsFilterKeys = _.keys(fieldsFilter);
+  const intersection = _.intersection(fieldsFilterKeys, modelKeys);
+  return intersection.length ? intersection.join(' ') : '';
+};
+
 const withQuery = (req, res, next) => {
   const query = queryToObject(req.query);
   _.extend(req, { query, _queryParsed: true });
   next();
 };
 
-const withFilter = (req, res, next) => {
+const withFields = (req, res, next) => {
   const query = req._queryParsed ? req.query : queryToObject(req.query);
-  const filter = DataObjectParser.untranspose(query.filter);
-  _.keys(filter || {}).forEach(key =>
-    _.extend(filter, { [key]: parseInt(filter[key])
+  const fields = DataObjectParser.untranspose(query.fields);
+  _.keys(fields || {}).forEach(key =>
+    _.extend(fields, { [key]: parseInt(fields[key])
     }));
-  _.extend(req, { filter });
+  _.extend(req, { fields, getFieldsForModel });
   next();
 };
 
-module.exports = { withQuery, withFilter };
+module.exports = { withQuery, withFields };

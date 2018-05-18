@@ -14,7 +14,7 @@ const getListOfAnswers = ({ Answer }) => async (req, res, next) => {
       _.extend(query, { title: new RegExp(`${search}`, 'i') });
     }
     const count = await Answer.find(query).count();
-    const questions = await Answer.find(query, req.filter)
+    const questions = await Answer.find(query, req.fields)
       .skip(skip)
       .limit(limit);
 

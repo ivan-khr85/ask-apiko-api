@@ -11,7 +11,7 @@ const {
 } = require('./requests-helpers');
 const {
   withQuery,
-  withFilter,
+  withFields,
 } = require('./parsers');
 
 module.exports = {
@@ -26,5 +26,5 @@ module.exports = {
   withoutErrors,
   errorHandler,
   withQuery,
-  withFilter,
+  withFields,
 };

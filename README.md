@@ -72,6 +72,22 @@ __PUT__ `/api/v1/users/my` - **Update** User details
        email {string}
 ```
 
+ GET `/api/v1/users/my` - Get own Profile
+
+ ```
+ @header
+      Authorization: Bearer {token}
+ @optionalQueryParameters
+       search {String} - value to search
+       limit {Number} - count of item to send
+       skip {Number} - value to search
+       sort. 
+            [fieldName] {Number} 1 || -1
+       fields
+             [fieldName] - (1 || -1) skip or keep filed,
+           
+```
+
 
 ### Question
 
@@ -86,6 +102,9 @@ __PUT__ `/api/v1/users/my` - **Update** User details
        skip {Number} - value to search
        sort. 
             [fieldName] {Number} 1 || -1
+       fields
+             [fieldName] - (1 || -1) skip or keep filed,
+           
 ```
 
  GET `/api/v1/questions/:_id` - get single

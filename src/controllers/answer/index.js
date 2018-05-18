@@ -1,5 +1,5 @@
 const { Router: router } = require('express');
-const { authenticate, withQuery, withFilter } = require('../../middleware');
+const { authenticate, withQuery, withFields } = require('../../middleware');
 const update = require('./update');
 const create = require('./create');
 const remove = require('./remove');
@@ -48,8 +48,8 @@ const list = require('./list');
 module.exports = (models) => {
   const api = router();
 
-  api.get('/',withQuery, withFilter, list(models));
-  api.get('/:_id',withQuery, withFilter, get(models));
+  api.get('/',withQuery, withFields, list(models));
+  api.get('/:_id',withQuery, withFields, get(models));
   api.post('/', authenticate, create(models));
   api.patch('/:_id', authenticate, update(models));
   api.delete('/:_id', authenticate, remove(models));

@@ -1,5 +1,5 @@
 const { Router: router } = require('express');
-const { authenticate, withQuery, withFilter } = require('../../middleware');
+const { authenticate, withQuery, withFields } = require('../../middleware');
 const update = require('./update');
 const create = require('./create');
 const remove = require('./remove');
@@ -17,7 +17,11 @@ const answersList = require('./ansers-list');
        search {String} - value to search
        limit {Number} - count of item to send
        skip {Number} - value to search
-
+       fields
+             title - (1 || -1) skip or keep filed,
+             description - (1 || -1) skip or keep filed,
+             ...
+             createdAt - (1 || -1) skip or keep filed,
 
  GET /api/v1/questions/:_id - get single
  @header
@@ -56,9 +60,9 @@ const answersList = require('./ansers-list');
 module.exports = (models) => {
   const api = router();
 
-  api.get('/', withQuery, withFilter, list(models));
-  api.get('/:_id',  withQuery, withFilter, get(models));
-  api.get('/:_id/answers',  withQuery, withFilter, answersList(models));
+  api.get('/', withQuery, withFields, list(models));
+  api.get('/:_id',  withQuery, withFields, get(models));
+  api.get('/:_id/answers',  withQuery, withFields, answersList(models));
   api.post('/', authenticate, create(models));
   api.patch('/:_id', authenticate, update(models));
   api.delete('/:_id', authenticate, remove(models));
