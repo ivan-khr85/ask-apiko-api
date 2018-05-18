@@ -1,6 +1,8 @@
 const { Router: router } = require('express');
 const { authenticate } = require('../../middleware');
 const update = require('./update');
+const { getMy } = require('./my');
+
 
 /**
  * Provide Api for User
@@ -15,7 +17,7 @@ const update = require('./update');
 
 module.exports = (models) => {
   const api = router();
-
+  api.get('/my', authenticate, getMy(models));
   api.put('/my', authenticate, update(models));
 
   return api;
