@@ -9,6 +9,7 @@ const { Vote } = require('../models/vote');
 const auth = require('../controllers/auth');
 const users = require('../controllers/users');
 const questions = require('../controllers/questions');
+const answers = require('../controllers/answer');
 
 const models = { User, Question, Answer, Vote };
 
@@ -18,6 +19,7 @@ const routersInit = config => {
   router.use('/auth', auth(models, { config }));
   router.use('/users', users(models, { config }));
   router.use('/questions', questions(models, { config }));
+  router.use('/answers', answers(models, { config }));
 
   router.use(errorHandler);
   return router;
