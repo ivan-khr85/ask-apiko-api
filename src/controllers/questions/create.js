@@ -5,7 +5,7 @@ const create = ({ Question }) => async (req, res, next) => {
   try {
     const userId = req.user.id;
     const question = new Question(_.extend({
-      createdBy: userId,
+      createdById: userId,
       createdAt: new Date(),
     }, req.body, {
       tags: (req.body.tags || '').split(' ')
