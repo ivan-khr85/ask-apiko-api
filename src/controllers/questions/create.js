@@ -7,7 +7,9 @@ const create = ({ Question }) => async (req, res, next) => {
     const question = new Question(_.extend({
       createdBy: userId,
       createdAt: new Date(),
-    }, req.body));
+    }, req.body, {
+      tags: req.body.tags.split(' ')
+    }));
 
 
     await question.save();
