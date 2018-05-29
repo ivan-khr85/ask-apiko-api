@@ -8,9 +8,9 @@ const create = ({ Question }) => async (req, res, next) => {
       createdBy: userId,
       createdAt: new Date(),
     }, req.body, {
-      tags: req.body.tags.split(' ')
+      tags: (req.body.tags || '').split(' ')
     }));
-
+    console.log(req.body)
 
     await question.save();
     return sendCreated(res, { question });
