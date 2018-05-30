@@ -3,7 +3,7 @@ const { sendOne } = require('../../middleware/index');
 const getMy = ({ User, Question }) => async (req, res, next) => {
   try {
     const user = await User.findById(req.user.id, req.fields);
-    const questions = await Question.find({ createdById: req.user.id });
+    const questions = await Question.find({ createdById: req.user.id }).slice(0, 10);
 
     return sendOne(res, { user, questions });
 
